@@ -17,3 +17,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Install node_modules and ng
 
 Please run `npm install` and `npm install -g @angular/cli`.
+
+## Link to the app
+
+`https://chef-specials-project.netlify.app/auth`
