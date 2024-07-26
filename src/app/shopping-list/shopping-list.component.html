@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-xs-10">
+    <app-shopping-edit></app-shopping-edit>
+    <hr />
+    <div *ngIf="ingredients.length === 0" style="color: red; font-weight: bold">
+      No ingredients available.
+    </div>
+    <ul class="list-group">
+      <a
+        class="list-group-item"
+        style="cursor: pointer"
+        *ngFor="let ingredient of ingredients; let i = index"
+        (click)="isAuthenticated ? onEditItem(i) : null"
+      >
+        <div style="display: flex; justify-content: space-between">
+          <strong>{{ ingredient.name }}</strong> ({{ ingredient.amount }})
+        </div>
+        <div>
+          <span class="badge badge-primary badge-pill"
+            >{{ ingredient.price }} <i class="fa-solid fa-dollar-sign"></i
+          ></span>
+        </div>
+      </a>
+    </ul>
+    <!-- Checkout Section -->
+    <div class="checkout-section mt-4">
+      <div class="alert alert-danger" *ngIf="!isAuthenticated">
+        <p>Please login to continue with your order checkout💰</p>
+      </div>
+      <button
+        class="btn btn-success"
+        routerLink="/checkout"
+        [disabled]="!isAuthenticated || ingredients.length === 0"
+      >
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+</div>

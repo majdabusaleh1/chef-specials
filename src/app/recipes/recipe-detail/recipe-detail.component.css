@@ -1,0 +1,29 @@
+.grid {
+  display: grid;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.rounded {
+  border-radius: 8px;
+}
+
+.recipe-title {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.recipe-description {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.recipe-ingredient {
+  background-color: #f8f9fa;
+}
+
+/* Add any additional styling as needed */

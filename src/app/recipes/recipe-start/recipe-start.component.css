@@ -1,0 +1,15 @@
+.recipe-info-card {
+  background-color: #e7f3fe;
+  border: 1px solid #b8d8f7;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+}
+
+.recipe-info-heading {
+  color: #31708f;
+}
+
+.recipe-info-text {
+  color: #5bc0de;
+}
