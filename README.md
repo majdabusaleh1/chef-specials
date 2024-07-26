@@ -20,4 +20,4 @@ Please run `npm install` and `npm install -g @angular/cli`.
 
 ## Link to the app
 
-`https://chef-specials-project.netlify.app/auth`
+[Chef Specials App](https://chef-specials-project.netlify.app)
