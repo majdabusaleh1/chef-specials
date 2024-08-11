@@ -1,15 +1,13 @@
-import { Injectable } from '@angular/core';
-import { SupabaseService } from '../shared/supabase';
-import { Recipe } from '../recipes/recipe.model';
-import { RecipeService } from '../recipes/recipe.service';
-import { AuthService } from '../auth/auth.service';
+import {Injectable} from '@angular/core';
+import {SupabaseService} from '../shared/supabase';
+import {Recipe} from '../recipes/recipe.model';
+import {RecipeService} from '../recipes/recipe.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class DataStorageService {
   constructor(
     private supabaseService: SupabaseService,
-    private recipeService: RecipeService,
-    private authService: AuthService
+    private recipeService: RecipeService
   ) {}
 
   async storeRecipes() {
@@ -17,45 +15,129 @@ export class DataStorageService {
     console.log('Storing recipes:', recipes);
 
     for (const recipe of recipes) {
-      console.log('Storing recipe:', recipe);
-      const { data: recipeData, error: recipeError } =
+      console.log('Storing recipe:', recipe.name);
+
+      // Check if the recipe already exists
+      const {data: existingRecipe, error: fetchRecipeError} =
         await this.supabaseService.supabase
           .from('recipes')
-          .upsert({
-            name: recipe.name,
-            description: recipe.description,
-            image_path: recipe.imagePath,
-          })
-          .select('id');
+          .select('id')
+          .eq('name', recipe.name)
+          .single();
 
-      if (recipeError) {
-        console.error('Error storing recipe:', recipeError);
+      if (fetchRecipeError && fetchRecipeError.code !== 'PGRST116') {
+        console.error('Error checking recipe existence:', fetchRecipeError);
         continue;
       }
 
-      const recipeId = recipeData[0].id;
-      console.log('Stored recipe with ID:', recipeId);
+      let recipeId;
 
-      for (const ingredient of recipe.ingredients) {
-        console.log('Storing ingredient:', ingredient);
-        const { data: ingredientData, error: ingredientError } =
+      if (existingRecipe) {
+        // Update the existing recipe
+        const {data: recipeData, error: updateRecipeError} =
           await this.supabaseService.supabase
-            .from('ingredients')
-            .upsert({
-              name: ingredient.name,
-              price: ingredient.price,
+            .from('recipes')
+            .update({
+              description: recipe.description,
+              image_path: recipe.imagePath,
             })
+            .eq('id', existingRecipe.id)
             .select('id');
 
-        if (ingredientError) {
-          console.error('Error storing ingredient:', ingredientError);
+        if (updateRecipeError) {
+          console.error('Error updating recipe:', updateRecipeError);
           continue;
         }
 
-        const ingredientId = ingredientData[0].id;
+        recipeId = recipeData[0].id;
+      } else {
+        // Insert new recipe
+        const {data: recipeData, error: insertRecipeError} =
+          await this.supabaseService.supabase
+            .from('recipes')
+            .insert({
+              name: recipe.name,
+              description: recipe.description,
+              image_path: recipe.imagePath,
+            })
+            .select('id');
+
+        if (insertRecipeError) {
+          console.error('Error inserting recipe:', insertRecipeError);
+          continue;
+        }
+
+        recipeId = recipeData[0].id;
+      }
+
+      console.log('Stored recipe with ID:', recipeId);
+
+      for (const ingredient of recipe.ingredients) {
+        console.log(
+          'Storing ingredient:',
+          ingredient.name,
+          ', Recipe ID:',
+          recipeId
+        );
+
+        // Check if the ingredient already exists
+        const {data: existingIngredient, error: fetchIngredientError} =
+          await this.supabaseService.supabase
+            .from('ingredients')
+            .select('id')
+            .eq('name', ingredient.name)
+            .single();
+
+        if (fetchIngredientError && fetchIngredientError.code !== 'PGRST116') {
+          console.error(
+            'Error checking ingredient existence:',
+            fetchIngredientError
+          );
+          continue;
+        }
+
+        let ingredientId;
+
+        if (existingIngredient) {
+          // Update the existing ingredient only if necessary
+          const {data: ingredientData, error: updateIngredientError} =
+            await this.supabaseService.supabase
+              .from('ingredients')
+              .update({
+                price: ingredient.price,
+              })
+              .eq('id', existingIngredient.id)
+              .select('id');
+
+          if (updateIngredientError) {
+            console.error('Error updating ingredient:', updateIngredientError);
+            continue;
+          }
+
+          ingredientId = ingredientData[0].id;
+        } else {
+          // Insert new ingredient
+          const {data: ingredientData, error: insertIngredientError} =
+            await this.supabaseService.supabase
+              .from('ingredients')
+              .insert({
+                name: ingredient.name,
+                price: ingredient.price,
+              })
+              .select('id');
+
+          if (insertIngredientError) {
+            console.error('Error inserting ingredient:', insertIngredientError);
+            continue;
+          }
+
+          ingredientId = ingredientData[0].id;
+        }
+
         console.log('Stored ingredient with ID:', ingredientId);
 
-        const { error: joinError } = await this.supabaseService.supabase
+        // Upsert the relationship in the recipe_ingredients table
+        const {error: joinError} = await this.supabaseService.supabase
           .from('recipe_ingredients')
           .upsert({
             recipe_id: recipeId,
@@ -76,7 +158,7 @@ export class DataStorageService {
 
   async fetchRecipes() {
     console.log('Fetching recipes...');
-    const { data: recipes, error } = await this.supabaseService.supabase
+    const {data: recipes, error} = await this.supabaseService.supabase
       .from('recipes')
       .select('*');
 
@@ -87,9 +169,14 @@ export class DataStorageService {
 
     console.log('Fetched recipes:', recipes);
 
+    const recipesMap = new Map<string, number>();
+
     for (const recipe of recipes) {
-      console.log('Fetching ingredients for recipe ID:', recipe.id);
-      const { data: ingredients, error: ingredientsError } =
+      console.log(`Fetched recipe: ${recipe.name}, ID: ${recipe.id}`);
+      recipesMap.set(recipe.name, recipe.id);
+
+      console.log(`Fetching ingredients for recipe ID: ${recipe.id}`);
+      const {data: ingredients, error: ingredientsError} =
         await this.supabaseService.supabase
           .from('recipe_ingredients')
           .select(
@@ -118,15 +205,15 @@ export class DataStorageService {
     }
 
     const loadedRecipes = recipes.map((recipe) => {
-      return new Recipe(
-        recipe.name,
-        recipe.description,
-        recipe.image_path,
-        recipe.ingredients
-      );
+      return {
+        name: recipe.name,
+        description: recipe.description,
+        imagePath: recipe.image_path,
+        ingredients: recipe.ingredients,
+      };
     });
 
-    this.recipeService.setRecipes(loadedRecipes);
+    this.recipeService.setRecipes(loadedRecipes, recipesMap);
     console.log('Loaded Recipes:', loadedRecipes);
   }
 }

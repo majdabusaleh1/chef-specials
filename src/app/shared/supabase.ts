@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { createClient } from '@supabase/supabase-js';
+import {Injectable} from '@angular/core';
+import {createClient} from '@supabase/supabase-js';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class SupabaseService {
   private supabaseUrl = 'https://qpwqrxrcfuokylbocluf.supabase.co';
   private supabaseKey =

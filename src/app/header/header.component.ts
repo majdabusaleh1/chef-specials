@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
 
-import { DataStorageService } from '../shared/data-storage.service';
-import { AuthService } from '../auth/auth.service';
-import { Subscription } from 'rxjs';
+import {DataStorageService} from '../shared/data-storage.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +16,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private dataStorageService: DataStorageService,
     private authService: AuthService
   ) {}
-  // SO WHEN WE ENTER ANY COMPONENT, THE COMPONENT WILL UPDATE THE VALUE OF THE USER, SO WE KNOW IF ITS AUTHENTICATED OR NOT
+
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe((user) => {
-      this.isAuthenticated = !user ? false : true;
+      this.isAuthenticated = !!user;
+      console.log('User authentication status: ', this.isAuthenticated);
     });
   }
 
@@ -28,13 +29,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSaveData() {
+    console.log('Saving data...');
     this.dataStorageService.storeRecipes();
   }
 
   onFetchData() {
+    console.log('Fetching data...');
     this.dataStorageService.fetchRecipes();
   }
+
   onLogout() {
+    console.log('Logging out...');
     this.authService.logout();
   }
 }

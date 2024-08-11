@@ -9,6 +9,11 @@
       />
     </div>
   </div>
+  <div *ngIf="recipe">
+    <h1>{{ recipe.name }}</h1>
+    <!-- other template code -->
+  </div>
+
   <div class="row">
     <div class="col-xs-12">
       <h1 class="recipe-title">{{ recipe.name }}</h1>
@@ -29,14 +34,14 @@
               >To Shopping List</a
             >
           </li>
-          <!-- <li>
+          <li>
             <a style="cursor: pointer" (click)="onEditRecipe()">Edit Recipe</a>
-          </li> -->
-          <!-- <li>
+          </li>
+          <li>
             <a style="cursor: pointer" (click)="onDeleteRecipe()"
               >Delete Recipe</a
             >
-          </li> -->
+          </li>
         </ul>
       </div>
     </div>

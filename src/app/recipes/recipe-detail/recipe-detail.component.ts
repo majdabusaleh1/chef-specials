@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
-import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
-import { ShoppingListService } from '../../shopping-list/shopping-list.service';
-import { Subscription } from 'rxjs';
+import {Recipe} from '../recipe.model';
+import {RecipeService} from '../recipe.service';
+import {ShoppingListService} from '../../shopping-list/shopping-list.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,7 +15,7 @@ export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
   id: number;
   itemAlreadyExisted: boolean;
-  private subscribtion: Subscription;
+  private subscription: Subscription;
 
   constructor(
     private recipeService: RecipeService,
@@ -30,7 +30,7 @@ export class RecipeDetailComponent implements OnInit {
       this.recipe = this.recipeService.getRecipe(this.id);
     });
 
-    this.subscribtion = this.sl.getItemAlreadyExisted().subscribe((val) => {
+    this.subscription = this.sl.getItemAlreadyExisted().subscribe((val) => {
       this.itemAlreadyExisted = val;
     });
   }
@@ -40,12 +40,16 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onEditRecipe() {
-    this.router.navigate(['edit'], { relativeTo: this.route });
-    // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
   onDeleteRecipe() {
-    this.recipeService.deleteRecipe(this.id);
-    this.router.navigate(['/recipes']);
+    const recipeId = this.recipeService.getRecipeIdByName(this.recipe.name);
+    if (recipeId !== undefined) {
+      this.recipeService.deleteRecipe(this.id, recipeId);
+      this.router.navigate(['/recipes']);
+    } else {
+      console.error('Recipe ID not found for:', this.recipe.name);
+    }
   }
 }
