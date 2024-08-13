@@ -17,7 +17,7 @@
 
 /* Custom horizontal rule */
 .custom-hr {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid black;
   margin: 30px 0;
   width: 50%;
   margin-left: auto;
