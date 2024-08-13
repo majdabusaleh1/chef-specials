@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {AuthService} from './auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'auth-app',
   templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
   isLoginMode = true;

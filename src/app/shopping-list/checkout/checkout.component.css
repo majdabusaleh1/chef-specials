@@ -1,0 +1,119 @@
+/* Greeting styling */
+.greeting {
+  font-size: 28px;
+  color: green;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Custom horizontal rule styling */
+.custom-hr {
+  border-top: 3px solid black;
+  margin: 20px 0;
+}
+
+/* Ingredient list styling */
+.ingredient-list {
+  margin-bottom: 20px;
+}
+
+/* Ingredient item styling */
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: #343a40;
+}
+
+.ingredient-item:hover {
+  background-color: #e2e6ea;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Payment options styling */
+.payment-options h5 {
+  color: #343a40;
+  font-weight: bold;
+}
+
+.form-check-label {
+  margin-left: 10px;
+  font-size: 18px;
+  color: #6c757d; /* Gray color for the labels */
+}
+
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* Payment form styling */
+.payment-form h5 {
+  color: #343a40;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.input-rounded {
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 1px solid #ced4da;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+/* Visa, MasterCard, and PayPal icon colors */
+.fab.fa-cc-visa {
+  color: #1a1f71; /* Visa blue */
+}
+
+.fab.fa-cc-mastercard {
+  color: #eb001b; /* MasterCard red */
+}
+
+.fab.fa-cc-paypal {
+  color: #003087; /* PayPal blue */
+}
+
+/* Checkout section styling */
+.checkout-section {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.total-amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: #a92727;
+  margin-bottom: 20px;
+}
+
+.btn-checkout {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 15px 40px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-checkout:hover:enabled {
+  background-color: #218838;
+  border-color: #1e7e34;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}

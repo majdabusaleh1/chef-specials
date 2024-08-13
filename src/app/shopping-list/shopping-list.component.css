@@ -1,5 +1,85 @@
-.ingredient-card {
+/* Custom horizontal rule styling */
+.custom-hr {
+  border-top: 3px solid #007bff;
+  margin: 20px 0;
+}
+
+/* Alert for no ingredients available */
+.no-ingredients-alert {
+  color: #dc3545;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Ingredient list styling */
+.ingredient-list {
+  margin-bottom: 20px;
+}
+
+/* Individual ingredient item styling */
+.ingredient-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: #343a40;
+}
+
+.ingredient-item:hover {
+  background-color: #e2e6ea;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ingredient-details {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ingredient-price .badge {
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+/* Checkout section styling */
+.checkout-section {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkout button styling */
+.btn-checkout {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 15px 40px;
+  width: 100%; /* Make the button full-width */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-checkout:disabled {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.btn-checkout:hover:enabled {
+  background-color: #218838;
+  border-color: #1e7e34;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }

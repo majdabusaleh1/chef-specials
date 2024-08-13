@@ -1,24 +1,24 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="ingredient-form">
       <div class="row">
         <div class="col-sm-5 form-group">
-          <label for="name">Name</label>
+          <label for="name" class="form-label">Name</label>
           <input
             type="text"
             id="name"
-            class="form-control"
+            class="form-control input-rounded"
             name="name"
             ngModel
             required
           />
         </div>
         <div class="col-sm-2 form-group">
-          <label for="amount">Amount</label>
+          <label for="amount" class="form-label">Amount</label>
           <input
             type="number"
             id="amount"
-            class="form-control"
+            class="form-control input-rounded"
             name="amount"
             ngModel
             required
@@ -26,11 +26,11 @@
           />
         </div>
         <div class="col-sm-2 form-group">
-          <label for="price">Price</label>
+          <label for="price" class="form-label">Price</label>
           <input
             type="number"
             id="price"
-            class="form-control"
+            class="form-control input-rounded"
             name="price"
             ngModel
             required
@@ -39,19 +39,27 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <button class="btn btn-success" type="submit" [disabled]="!f.valid">
-            {{ editMode ? "Update" : "Add" }}
+        <div class="col-xs-12 text-center">
+          <button
+            class="btn btn-success btn-lg shadow-sm"
+            type="submit"
+            [disabled]="!f.valid"
+          >
+            {{ editMode ? 'Update' : 'Add' }}
           </button>
           <button
-            class="btn btn-danger"
+            class="btn btn-danger btn-lg shadow-sm"
             type="button"
             (click)="onDelete()"
             *ngIf="editMode"
           >
             Delete
           </button>
-          <button class="btn btn-primary" type="button" (click)="onClear()">
+          <button
+            class="btn btn-primary btn-lg shadow-sm"
+            type="button"
+            (click)="onClear()"
+          >
             Clear
           </button>
         </div>

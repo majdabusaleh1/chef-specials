@@ -1,0 +1,97 @@
+/* Wrapper for the entire section with minimal top space */
+.container-wrapper {
+  display: flex;
+  justify-content: flex-start; /* Align the container to the start (left) horizontally */
+  align-items: flex-start; /* Align the container towards the start (top) vertically */
+  min-height: 100vh; /* Ensures the container takes at least the full height of the viewport */
+  padding-top: 10px; /* Minimal top padding to bring the container closer to the top */
+  padding-left: 100px; /* Left padding remains the same */
+  background-color: transparent; /* No background color */
+}
+
+/* Main container with white background, rounded corners, and reduced size */
+.auth-container {
+  background-color: #ffffff; /* White background for the form */
+  padding: 20px; /* Reduce padding for less internal space */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 400px; /* Increase the width of the container */
+  min-height: 450px; /* Reduce the minimum height of the container */
+  text-align: center; /* Center the form elements */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the content vertically within the container */
+}
+
+/* Styling for the alert box */
+.alert {
+  margin-bottom: 15px; /* Reduce the margin below the alert */
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8d7da; /* Light red background */
+  color: #721c24; /* Dark red text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  display: block; /* Ensure the alert is visible */
+  font-size: 14px; /* Ensure readability */
+}
+
+/* Form group margin adjustments */
+.form-group {
+  margin-bottom: 15px; /* Reduce space between form groups */
+  text-align: left; /* Align labels to the left */
+}
+
+/* Labels with increased font size */
+.form-group label {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 15px; /* Increase the font size of the labels */
+}
+
+/* Rounded input fields with increased width */
+.input-rounded {
+  padding: 15px; /* Keep padding to ensure the input fields are still comfortable to use */
+  font-size: 16px; /* Increase font size */
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ensure input fields take up full width within the container */
+  margin-bottom: 15px; /* Add some margin below inputs */
+  max-width: 100%; /* Ensure the input fields do not exceed the container width */
+}
+
+/* Button styling */
+.btn-lg {
+  padding: 12px 20px; /* Reduce padding for shorter buttons */
+  font-size: 16px;
+  border-radius: 25px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Primary button styling */
+.btn-primary {
+  background-color: #28a745; /* Green color for the primary button */
+  border-color: #28a745;
+  color: #fff;
+  width: 100%; /* Ensure button takes up full width */
+}
+
+.btn-primary:hover {
+  background-color: #218838;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary button styling */
+.btn-secondary {
+  background-color: #ffc107; /* Yellow color for the secondary button */
+  border-color: #ffc107;
+  color: #212529;
+  width: 100%; /* Ensure button takes up full width */
+  margin-top: 10px; /* Add margin above the secondary button */
+}
+
+.btn-secondary:hover {
+  background-color: #e0a800;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

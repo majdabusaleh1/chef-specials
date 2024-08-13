@@ -1,34 +1,36 @@
 <div class="row">
   <div class="col-xs-10">
     <app-shopping-edit></app-shopping-edit>
-    <hr />
-    <div *ngIf="ingredients.length === 0" style="color: red; font-weight: bold">
+    <hr class="custom-hr" />
+
+    <div *ngIf="ingredients.length === 0" class="no-ingredients-alert">
       No ingredients available.
     </div>
-    <ul class="list-group">
+
+    <ul class="list-group ingredient-list">
       <a
-        class="list-group-item"
-        style="cursor: pointer"
+        class="list-group-item ingredient-item shadow-sm"
         *ngFor="let ingredient of ingredients; let i = index"
         (click)="isAuthenticated ? onEditItem(i) : null"
       >
-        <div style="display: flex; justify-content: space-between">
+        <div class="ingredient-details">
           <strong>{{ ingredient.name }}</strong> ({{ ingredient.amount }})
         </div>
-        <div>
-          <span class="badge badge-primary badge-pill"
-            >{{ ingredient.price }} <i class="fa-solid fa-dollar-sign"></i
-          ></span>
+        <div class="ingredient-price">
+          <span class="badge badge-primary badge-pill">
+            {{ ingredient.price }} <i class="fa-solid fa-dollar-sign"></i>
+          </span>
         </div>
       </a>
     </ul>
+
     <!-- Checkout Section -->
-    <div class="checkout-section mt-4">
+    <div class="checkout-section shadow-sm mt-4">
       <div class="alert alert-danger" *ngIf="!isAuthenticated">
-        <p>Please login to continue with your order checkout💰</p>
+        <p>Please login to continue with your order checkout 💰</p>
       </div>
       <button
-        class="btn btn-success"
+        class="btn btn-checkout btn-lg"
         routerLink="/checkout"
         [disabled]="!isAuthenticated || ingredients.length === 0"
       >

@@ -1,0 +1,82 @@
+/* Navbar overall styling */
+.navbar {
+  background-color: black; /* Updated to the new light blue background */
+  padding: 15px 30px; /* Padding for a more spacious look */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1.8rem; /* Slightly smaller font size for the brand */
+  color: white !important; /* Updated to the new darker blue color for the brand text */
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: white !important; /* Updated to the new darker blue color for other links */
+  font-size: 1rem; /* Smaller font size for nav links */
+  padding: 5px 10px; /* Reduce padding to make the width smaller */
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Specific colors for individual menu items */
+.navbar-nav .nav-item a[href*='/recipes'] {
+  color: white !important; /* Darker blue color for Menu */
+  font-weight: bold !important;
+}
+
+.navbar-nav .nav-item a[href*='/shopping-list'] {
+  color: gold !important; /* Darker blue color for Shopping Cart */
+  font-weight: lighter !important;
+}
+
+.navbar-nav .nav-item a[href*='/auth'] {
+  color: white !important; /* Darker blue color for Authentication */
+}
+
+.navbar-nav .nav-item a[style*='pointer'][click*='onLogout'] {
+  color: white !important; /* Darker blue color for Logout */
+  font-weight: bold !important;
+}
+
+.navbar-nav .dropdown-toggle {
+  color: white !important; /* Darker blue color for Manage */
+  font-weight: bold !important;
+}
+
+/* Hover effects for the specified menu items */
+.navbar-nav .nav-item a[href*='/recipes']:hover,
+.navbar-nav .nav-item a[href*='/shopping-list']:hover,
+.navbar-nav .nav-item a[href*='/auth']:hover,
+.navbar-nav .nav-item a[style*='pointer'][click*='onLogout']:hover,
+.navbar-nav .dropdown-toggle:hover {
+  color: gray !important; /* White hover color to stand out on light blue background */
+  background-color: transparent;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+  color: #ffffff !important; /* White color for active state */
+  background-color: transparent;
+}
+
+/* Dropdown menu */
+.navbar-nav .dropdown-menu {
+  background-color: black; /* Updated to the new light blue background for the dropdown */
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-nav .dropdown-item {
+  color: white !important; /* Darker blue text for dropdown items */
+  padding: 5px 15px;
+  font-size: 1rem; /* Smaller font size for dropdown items */
+}
+
+.navbar-nav .dropdown-item:hover {
+  background-color: #6bb1d1; /* Slightly darker blue on hover */
+  color: #e0e0e0 !important; /* Lighter hover color */
+}
+
+/* Align Logout and Manage to the far right */
+.navbar-right {
+  margin-left: auto; /* Ensure the right-aligned items are pushed to the far right */
+}

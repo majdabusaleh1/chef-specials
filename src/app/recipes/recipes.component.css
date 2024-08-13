@@ -1,0 +1,32 @@
+/* General styling for both containers */
+.recipe-list-container,
+.recipe-details-container {
+  background-color: #ffffff; /* White background for a clean look */
+  border-radius: 15px; /* Smooth rounded corners */
+  padding: 20px; /* Padding inside the containers */
+  margin-bottom: 20px; /* Space below the containers */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+/* Hover effect for the containers */
+.recipe-list-container:hover,
+.recipe-details-container:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Deeper shadow on hover */
+}
+
+/* Shadow styling */
+.shadow-lg {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Default shadow for the containers */
+}
+
+/* Styling specific to the recipe list container */
+.recipe-list-container {
+  /* Removed max-height and overflow-y to prevent scrolling */
+}
+
+/* Styling specific to the recipe details container */
+.recipe-details-container {
+  min-height: 400px; /* Ensure the details container maintains a minimum height */
+  background-color: #f8f9fa; /* Slightly off-white background for the details section */
+}

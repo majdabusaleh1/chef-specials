@@ -1,15 +1,34 @@
+/* Recipe info card styling */
 .recipe-info-card {
-  background-color: #e7f3fe;
+  background-color: #f0f8ff; /* Lighter background color for a softer look */
   border: 1px solid #b8d8f7;
-  border-radius: 8px;
-  padding: 30px;
+  border-radius: 15px; /* Increased border-radius for smoother corners */
+  padding: 40px; /* Extra padding for a spacious feel */
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.recipe-info-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Deeper shadow on hover */
 }
 
 .recipe-info-heading {
   color: #31708f;
+  font-size: 24px; /* Larger font size for prominence */
+  font-weight: 700; /* Bold font weight */
+  margin-bottom: 20px; /* Spacing below the heading */
+  text-transform: uppercase; /* Uppercase letters for a modern touch */
 }
 
 .recipe-info-text {
   color: #5bc0de;
+  font-size: 18px; /* Slightly larger text size */
+  line-height: 1.6; /* Increased line-height for readability */
+  margin-bottom: 0; /* Remove bottom margin for a cleaner look */
+}
+
+/* Shadow styling */
+.shadow-lg {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Default shadow for the card */
 }

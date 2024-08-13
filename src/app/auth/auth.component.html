@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-xs-12 col-md-6 col-md-offset-3">
+<div class="container-wrapper">
+  <div class="auth-container">
     <div class="alert alert-danger" *ngIf="error">
       <p>{{ error }}</p>
     </div>
@@ -11,7 +11,7 @@
         <label for="email">E-Mail</label>
         <input
           type="email"
-          class="form-control"
+          class="form-control input-rounded"
           ngModel
           name="email"
           required
@@ -22,7 +22,7 @@
         <label for="password">Password</label>
         <input
           type="password"
-          class="form-control"
+          class="form-control input-rounded"
           ngModel
           name="password"
           required
@@ -31,15 +31,18 @@
       </div>
       <div>
         <button
-          class="btn btn-primary"
+          class="btn btn-primary btn-lg"
           type="submit"
           [disabled]="!authForm.valid"
         >
-          {{ isLoginMode ? "Login" : "Sign Up" }}
+          {{ isLoginMode ? 'Login' : 'Sign Up' }}
         </button>
-        |
-        <button class="btn btn-primary" type="button" (click)="onSwitchMode()">
-          {{ isLoginMode ? "Switch to Sign Up " : "Switch to Login" }}
+        <button
+          class="btn btn-secondary btn-lg"
+          type="button"
+          (click)="onSwitchMode()"
+        >
+          {{ isLoginMode ? 'Switch to Sign Up' : 'Switch to Login' }}
         </button>
       </div>
     </form>

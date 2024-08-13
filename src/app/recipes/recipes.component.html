@@ -1,9 +1,13 @@
 <div class="row">
   <div class="col-md-5">
-    <app-recipe-list></app-recipe-list>
+    <div class="recipe-list-container shadow-lg">
+      <app-recipe-list></app-recipe-list>
+    </div>
   </div>
 
   <div class="col-md-7">
-    <router-outlet></router-outlet>
+    <div class="recipe-details-container shadow-lg">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

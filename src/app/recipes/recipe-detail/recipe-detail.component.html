@@ -1,58 +1,48 @@
-<div class="text-center grid gap-6">
-  <div class="row">
-    <div class="col-xs-12">
+<div class="container">
+  <!-- Recipe Container -->
+  <div class="recipe-container">
+    <div class="image-container">
       <img
         [src]="recipe.imagePath"
         alt="{{ recipe.name }}"
-        class="img-responsive rounded"
-        style="max-height: 300px"
+        class="img-responsive rounded shadow"
       />
     </div>
-  </div>
-  <div *ngIf="recipe">
-    <h1>{{ recipe.name }}</h1>
-    <!-- other template code -->
-  </div>
 
-  <div class="row">
-    <div class="col-xs-12">
+    <div *ngIf="recipe" class="recipe-header text-center">
       <h1 class="recipe-title">{{ recipe.name }}</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="alert alert-danger" *ngIf="itemAlreadyExisted">
-        <p>Ingredients already existed 🧑🏻‍🍳</p>
-      </div>
-      <div class="btn-group" appDropdown>
-        <button type="button" class="btn btn-primary dropdown-toggle">
-          Manage Recipe
-        </button>
-        <ul class="dropdown-menu">
-          <li>
-            <a (click)="onAddToShoppingList()" style="cursor: pointer"
-              >To Shopping List</a
-            >
-          </li>
-          <li>
-            <a style="cursor: pointer" (click)="onEditRecipe()">Edit Recipe</a>
-          </li>
-          <li>
-            <a style="cursor: pointer" (click)="onDeleteRecipe()"
-              >Delete Recipe</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
       <p class="recipe-description">{{ recipe.description }}</p>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 mx-auto">
+
+    <div class="alert alert-danger text-center" *ngIf="itemAlreadyExisted">
+      <p>Ingredients already existed 🧑🏻‍🍳</p>
+    </div>
+
+    <!-- Manage Recipe Button and Dropdown -->
+    <div class="btn-group d-flex justify-content-center" appDropdown>
+      <button
+        type="button"
+        class="btn btn-primary dropdown-toggle shadow"
+        (click)="toggleDropdown()"
+      >
+        Manage Recipe
+      </button>
+      <ul class="dropdown-menu text-center" [class.show]="isDropdownOpen">
+        <li>
+          <a (click)="onAddToShoppingList()" class="dropdown-item"
+            >To Shopping List</a
+          >
+        </li>
+        <li>
+          <a (click)="onEditRecipe()" class="dropdown-item">Edit Recipe</a>
+        </li>
+        <li>
+          <a (click)="onDeleteRecipe()" class="dropdown-item">Delete Recipe</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="ingredients-list mx-auto">
       <ul class="list-group">
         <li
           class="list-group-item recipe-ingredient"

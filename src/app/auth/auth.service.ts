@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, throwError } from 'rxjs';
-import { SupabaseService } from '../shared/supabase';
-import { User } from './user.model';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, throwError} from 'rxjs';
+import {SupabaseService} from '../shared/supabase';
+import {User} from './user.model';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -17,37 +17,45 @@ export class AuthService {
   ) {}
 
   async signup(email: string, password: string) {
-    const { data, error } = await this.supabaseService.supabase.auth.signUp({
-      email,
-      password,
-    });
-
-    if (error) {
-      if (error.status === 429) {
-        console.error(
-          'Signup error: Too many requests. Please try again later.'
-        );
-      } else {
-        console.error('Signup error:', error.message);
-      }
-    } else if (data && data.user && data.session) {
-      this.handleAuthentication(data.user, data.session.access_token);
-      console.log('Signup successful:', data.user);
-    }
-  }
-
-  async login(email: string, password: string) {
-    const { data, error } =
-      await this.supabaseService.supabase.auth.signInWithPassword({
+    try {
+      const {data, error} = await this.supabaseService.supabase.auth.signUp({
         email,
         password,
       });
 
-    if (error) {
-      console.error('Login error:', error.message);
-    } else if (data && data.session && data.session.user) {
-      this.handleAuthentication(data.session.user, data.session.access_token);
-      console.log('Login successful:', data.session);
+      if (error) {
+        throw error;
+      }
+
+      if (data && data.user && data.session) {
+        this.handleAuthentication(data.user, data.session.access_token);
+        console.log('Signup successful:', data.user);
+      }
+    } catch (error) {
+      this.handleError(error);
+      return throwError(this.handleError(error)); // Return the error message to be caught by the component
+    }
+  }
+
+  async login(email: string, password: string) {
+    try {
+      const {data, error} =
+        await this.supabaseService.supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      if (data && data.session && data.session.user) {
+        this.handleAuthentication(data.session.user, data.session.access_token);
+        console.log('Login successful:', data.session);
+      }
+    } catch (error) {
+      this.handleError(error);
+      return throwError(this.handleError(error)); // Return the error message to be caught by the component
     }
   }
 
@@ -119,6 +127,12 @@ export class AuthService {
         break;
       case 'INVALID_PASSWORD':
         errorMessage = 'This password is not correct.';
+        break;
+      case '429':
+        errorMessage = 'Too many requests. Please try again later.';
+        break;
+      default:
+        errorMessage = errorRes.message; // Default to the message provided by Supabase
         break;
     }
     return throwError(errorMessage);

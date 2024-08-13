@@ -16,6 +16,7 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
   itemAlreadyExisted: boolean;
   private subscription: Subscription;
+  isDropdownOpen: boolean = false; // Added property for dropdown toggle
 
   constructor(
     private recipeService: RecipeService,
@@ -51,5 +52,10 @@ export class RecipeDetailComponent implements OnInit {
     } else {
       console.error('Recipe ID not found for:', this.recipe.name);
     }
+  }
+
+  // Method to toggle dropdown visibility
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }

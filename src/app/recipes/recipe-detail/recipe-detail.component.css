@@ -1,29 +1,119 @@
-.grid {
-  display: grid;
+/* General container styling for spacing and centering */
+.container {
+  max-width: 100%; /* Ensure the container does not exceed the page width */
+  width: 100%; /* Make the container take up the full width available */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Padding for inner spacing */
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Recipe container */
+.recipe-container {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Image styling */
+.image-container {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .img-responsive {
-  width: 100%;
+  max-width: 100%;
   height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.rounded {
-  border-radius: 8px;
+/* Recipe header */
+.recipe-header {
+  margin-bottom: 20px;
 }
 
 .recipe-title {
-  color: #333;
-  font-size: 24px;
+  color: #2c3e50;
+  font-size: 36px;
+  font-weight: 700;
   margin-bottom: 10px;
 }
 
 .recipe-description {
-  color: #666;
-  margin-bottom: 15px;
+  color: #7f8c8d;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 
-.recipe-ingredient {
-  background-color: #f8f9fa;
+/* Button group */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
 }
 
-/* Add any additional styling as needed */
+.btn-primary {
+  background-color: #3498db;
+  border-color: #2980b9;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+  border-color: #1c6399;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  width: 200px;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-item {
+  color: #2c3e50;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+/* Ingredients list */
+.ingredients-list {
+  margin-top: 20px;
+}
+
+.list-group-item {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Alert message */
+.alert-danger {
+  background-color: #e74c3c;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}

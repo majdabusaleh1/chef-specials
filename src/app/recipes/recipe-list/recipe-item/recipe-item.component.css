@@ -1,0 +1,51 @@
+/* Recipe link styling */
+.recipe-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease;
+  color: #343a40;
+}
+
+.recipe-link:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.recipe-link.active {
+  border-color: #007bff;
+  background-color: #e9ecef;
+}
+
+/* Recipe information styling */
+.recipe-info {
+  flex-grow: 1;
+  margin-right: 20px; /* More space between the text and the image */
+}
+
+.recipe-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #007bff;
+}
+
+.recipe-description {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Recipe image styling */
+.recipe-image img {
+  max-height: 100px; /* Further increase the max-height for a larger image */
+  max-width: 100px; /* Ensure the image doesn't exceed a square shape */
+  width: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Match the overall design aesthetic */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
